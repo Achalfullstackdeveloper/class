@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Front-End Development</title>
+</head>
+
+<body>
+    <h1>Front-End Development</h1>
+    <p>
+        A frontend developer uses HTML, CSS, and JavaScript to design and build the visual and
+        interactive elements of websites and applications.
+    </p>
+
+    <input type="text" id="message" placeholder="Enter your message" />
+    <h2 id="output-message"></h2>
+    <button onclick="handlepost()">Post</button>
+    <button onclick="handleget()">Get</button>
+
+    <script>
+        let arrayofmessage = [];
+
+        async function handlepost() {
+            alert ("message is posted");
+            // const message = document.getElementById("message").value;
+             
+            const data = JSON.stringify({ message:document.getElementById("message").value });
+
+            const headerBody = {
+                method: "POST",
+                body: data,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            };
+
+            const response = await fetch("http://localhost:4500/post-messages", headerBody);
+
+
+            document.getElementById("message").value = "";
+        }
+
+        async function handleget() {
+            //   const message = document.getElementById("message").value;
+            //   arrayofmessage.push(message);
+            //   document.getElementById("message").value = "";
+            let headerBody = {
+                method: "GET",
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            };
+
+            const response = await fetch("http://localhost:4500/get-messages", headerBody)
+            const data = await response.text();
+            console.log(data);
+
+            document.getElementById("output-message").innerText += data;
+        }
+    </script>
+</body>
+
+</html>

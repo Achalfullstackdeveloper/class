@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Js</title>
+</head>
+
+<body>
+    <h1>Node Js</h1>
+    <p>Node.js is primarily used to build server-side applications, including web servers, APIs, and real-time
+        applications.</p>
+    <p> Try accessing<a href="http://localhost:4000/khushi">/khushi</a> or
+        <a href="http://localhost:4000/achal">/Achal</a>
+    </p>
+    <p>For any other path it will respond with "Hello,World!"</p>
+    <button id="myButton-one" onclick="myFunctionOne()"> Khushi</button>
+    <button id="myButton-two" onclick="myFunctionThree()"> Achal</button>
+    <script>
+        async function myFunctionThree(){
+            one();
+            Two();
+            Three();
+        }
+        async function myFunctionOne() {
+            const dict = {
+                "method": "GET",
+            }
+            let response = await fetch("http://localhost:4000/khushi",dict);
+            let result = await response.text();
+            document.getElementById("result-text").innerText = result;
+        }
+
+        async function myFunctionTwo() {
+            const dict = {
+                "method": "GET",
+            }
+
+            let response = await fetch("http://localhost:4000/achal",dict);
+            let result = await response.text();
+            document.getElementById("result-text").innerText = result;
+        }
+
+        function one (){
+            console.log("one start");
+            console.log("one end");
+        }
+       async function Two (){
+            console.log("two start");
+            // for (let i =0;i<10000000000;i++){}
+            setTimeout(() =>{
+                console.log("two end"); 
+            },2000);
+        }
+        function Three (){
+            console.log("three start");
+            console.log("three end");
+        }
+     
+    </script>
+</body>
+
+</html>
